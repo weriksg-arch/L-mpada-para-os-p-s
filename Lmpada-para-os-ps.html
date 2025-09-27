@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lâmpada para os Pés</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #fff5e6;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        header {
+            background: linear-gradient(to right, #8B4513, #A0522D);
+            color: #FFD700;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .verse-container {
+            background-color: #fef9e7;
+            border-left: 5px solid #FFD700;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .verse-text {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .verse-reference {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #8B4513;
+        }
+
+        .button-container {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .candle-container {
+            position: relative;
+            width: 80px;
+            height: 180px;
+            margin-bottom: 20px;
+        }
+
+        .candle {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 120px;
+            background: linear-gradient(to right, #f0f0f0, #e0e0e0, #f0f0f0);
+            border-radius: 20px 20px 5px 5px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .candle:before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 30px;
+            background: #FFD700;
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 20px #FFA500, 0 0 40px #FF8C00;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .candle:hover {
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        .candle:hover:before {
+            box-shadow: 0 0 25px #FFA500, 0 0 50px #FF8C00;
+        }
+
+        .candle:active {
+            transform: translateX(-50%) scale(0.95);
+        }
+
+        .flame {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 40px;
+            background: linear-gradient(to top, #FF8C00, #FFD700, #FFF);
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 20px #FFA500, 0 0 40px #FF8C00;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: flicker 2s infinite alternate;
+        }
+
+        .flame.active {
+            opacity: 1;
+        }
+
+        @keyframes flicker {
+
+            0%,
+            100% {
+                transform: translateX(-50%) scale(1);
+            }
+
+            50% {
+                transform: translateX(-50%) scale(1.05) translateY(-2px);
+            }
+        }
+
+        .button-text {
+            font-size: 1.2rem;
+            color: #8B4513;
+            margin-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #8B4513;
+            color: #FFD700;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .verse-text {
+                font-size: 1.2rem;
+            }
+
+            .candle-container {
+                width: 60px;
+                height: 150px;
+            }
+
+            .candle {
+                width: 30px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>L&acirc;mpada **** ** P&eacute;s</h1>
+            <p class="subtitle">A tua ******* &eacute; l&acirc;mpada para os meus p&eacute;s e *** para o meu caminho. - Salmos 119:105</p>
+        </header>
+        <div class="content">
+            <div class="verse-container">
+                <p class="verse-text" id="verse-text">****** na vela para ******* um vers&iacute;**** b&iacute;***** aleat&oacute;rio.</p>
+                <p class="verse-reference" id="verse-reference"><br></p>
+            </div>
+            <div class="button-container">
+                <div class="candle-container">
+                    <div class="candle" id="candle-btn"><br></div>
+                    <div class="flame" id="flame"><br></div>
+                </div>
+                <p class="button-text">Acenda a vela</p>
+            </div>
+        </div>
+        <footer>
+            <p>Vers&iacute;***** da B&iacute;blia ******* - Site ************ para inspira&ccedil;&atilde;o di&aacute;ria</p>
+        </footer>
+    </div>
+    <script>
+        // Array de versículos bíblicos (amostra de 50 versículos)
+        const verses = [
+            {
+                text: "Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.",
+                reference: "João 3:16"
+            },
+            {
+                text: "Eu posso todas as coisas naquele que me fortalece.",
+                reference: "Filipenses 4:13"
+            },
+            {
+                text: "Entrega o teu caminho ao Senhor; confia nele, e ele tudo fará.",
+                reference: "Salmos 37:5"
+            },
+            {
+                text: "O Senhor é o meu pastor; nada me faltará.",
+                reference: "Salmos 23:1"
+            },
+            {
+                text: "Não temas, porque eu sou contigo; não te assombres, porque eu sou teu Deus; eu te fortaleço, e te ajudo, e te sustento com a destra da minha justiça.",
+                reference: "Isaías 41:10"
+            },
+            {
+                text: "Lembrem-se: aquele que semeia pouco, também colherá pouco, e aquele que semeia com fartura, também colherá fartamente.",
+                reference: "2 Coríntios 9:6"
+            },
+            {
+                text: "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento.",
+                reference: "Provérbios 3:5"
+            },
+            {
+                text: "O Senhor é a minha luz e a minha salvação; a quem temerei? O Senhor é a força da minha vida; de quem me recearei?",
+                reference: "Salmos 27:1"
+            },
+            {
+                text: "Mas os que esperam no Senhor renovarão as suas forças; subirão com asas como águias; correrão, e não se cansarão; andarão, e não se fatigarão.",
+                reference: "Isaías 40:31"
+            },
+            {
+                text: "Porque eu bem sei os pensamentos que tenho a vosso respeito, diz o Senhor; pensamentos de paz, e não de mal, para vos dar o fim que esperais.",
+                reference: "Jeremias 29:11"
+            },
+            {
+                text: "E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados segundo o seu propósito.",
+                reference: "Romanos 8:28"
+            },
+            {
+                text: "Alegrai-vos na esperança, sede pacientes na tribulação, perseverai na oração.",
+                reference: "Romanos 12:12"
+            },
+            {
+                text: "Ora, a fé é o firme fundamento das coisas que se esperam, e a prova das coisas que se não veem.",
+                reference: "Hebreus 11:1"
+            },
+            {
+                text: "Não andeis ansiosos por coisa alguma; antes em tudo sejam os vossos pedidos conhecidos diante de Deus pela oração e súplica com ações de graças.",
+                reference: "Filipenses 4:6"
+            },
+            {
+                text: "Tudo tem o seu tempo determinado, e há tempo para todo o propósito debaixo do céu.",
+                reference: "Eclesiastes 3:1"
+            },
+            {
+                text: "O amor é sofredor, é benigno; o amor não é invejoso; o amor não trata com leviandade, não se ensoberbece.",
+                reference: "1 Coríntios 13:4"
+            },
+            {
+                text: "Bendito o varão que confia no Senhor, e cuja esperança é o Senhor.",
+                reference: "Jeremias 17:7"
+            },
+            {
+                text: "E, tudo quanto fizerdes, fazei-o de todo o coração, como ao Senhor e não aos homens.",
+                reference: "Colossenses 3:23"
+            },
+            {
+                text: "Deixo-vos a paz, a minha paz vos dou; não vo-la dou como o mundo a dá. Não se turbe o vosso coração, nem se atemorize.",
+                reference: "João 14:27"
+            },
+            {
+                text: "Porque para mim o viver é Cristo, e o morrer é ganho.",
+                reference: "Filipenses 1:21"
+            },
+            {
+                text: "Antes, santificai a Cristo, como Senhor, em vosso coração; e estai sempre preparados para responder com mansidão e temor a todo aquele que vos pedir a razão da esperança que há em vós.",
+                reference: "1 Pedro 3:15"
+            },
+            {
+                text: "E não vos conformeis com este mundo, mas transformai-vos pela renovação da vossa mente, para que experimenteis qual seja a boa, agradável e perfeita vontade de Deus.",
+                reference: "Romanos 12:2"
+            },
+            {
+                text: "O temor do Senhor é o princípio da sabedoria, e o conhecimento do Santo a prudência.",
+                reference: "Provérbios 9:10"
+            },
+            {
+                text: "Melhor é o pouco com o temor do Senhor, do que um grande tesouro onde há inquietação.",
+                reference: "Provérbios 15:16"
+            },
+            {
+                text: "Ensina a criança no caminho em que deve andar, e, ainda quando for velho, não se desviará dele.",
+                reference: "Provérbios 22:6"
+            },
+            {
+                text: "O coração alegre é como o bom remédio, mas o espírito abatido seca os ossos.",
+                reference: "Provérbios 17:22"
+            },
+            {
+                text: "O que o homem semear, isso também ceifará.",
+                reference: "Gálatas 6:7"
+            },
+            {
+                text: "Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus.",
+                reference: "Efésios 2:8"
+            },
+            {
+                text: "E, sobre tudo isto, revesti-vos de amor, que é o vínculo da perfeição.",
+                reference: "Colossenses 3:14"
+            },
+            {
+                text: "Porque não temos um sumo sacerdote que não possa compadecer-se das nossas fraquezas; porém, um que, como nós, em tudo foi tentado, mas sem pecado.",
+                reference: "Hebreus 4:15"
+            },
+            {
+                text: "E disse-me: A minha graça te basta, porque o meu poder se aperfeiçoa na fraqueza. De boa vontade, pois, me gloriarei nas minhas fraquezas, para que em mim habite o poder de Cristo.",
+                reference: "2 Coríntios 12:9"
+            },
+            {
+                text: "E o Deus de toda a graça, que em Cristo Jesus vos chamou à sua eterna glória, depois de haverdes padecido um pouco, ele mesmo vos aperfeiçoará, confirmará, fortificará e fortalecerá.",
+                reference: "1 Pedro 5:10"
+            },
+            {
+                text: "Porque o Senhor dá a sabedoria, e da sua boca vem a inteligência e o entendimento.",
+                reference: "Provérbios 2:6"
+            },
+            {
+                text: "O que semeia na justiça receberá galardão seguro.",
+                reference: "Provérbios 11:18"
+            },
+            {
+                text: "O que anda com os sábios ficará sábio, mas o companheiro dos tolos será destruído.",
+                reference: "Provérbios 13:20"
+            },
+            {
+                text: "O que guarda a sua boca conserva a sua alma, mas o que muito abre os seus lábios tem perturbação.",
+                reference: "Provérbios 13:3"
+            },
+            {
+                text: "O que confia no seu próprio coração é insensato, mas o que anda em sabedoria será salvo.",
+                reference: "Provérbios 28:26"
+            },
+            {
+                text: "O que esconde as suas transgressões nunca prosperará, mas o que as confessa e deixa alcançará misericórdia.",
+                reference: "Provérbios 28:13"
+            },
+            {
+                text: "O justo atenta para a vida dos seus animais, mas as entranhas dos ímpios são cruéis.",
+                reference: "Provérbios 12:10"
+            },
+            {
+                text: "Na multidão de palavras não falta pecado, mas o que modera os seus lábios é prudente.",
+                reference: "Provérbios 10:19"
+            },
+            {
+                text: "O justo nunca será abalado, mas os ímpios não habitarão a terra.",
+                reference: "Provérbios 10:30"
+            },
+            {
+                text: "A boca do justo é manancial de vida, mas a boca dos ímpios encobre a violência.",
+                reference: "Provérbios 10:11"
+            },
+            {
+                text: "Melhor é a comida de hortaliça, onde há amor, do que o boi gordo, e com ele o ódio.",
+                reference: "Provérbios 15:17"
+            },
+            {
+                text: "O homem iracundo levanta contendas, mas o longânimo apazigua a luta.",
+                reference: "Provérbios 15:18"
+            },
+            {
+                text: "O filho sábio alegra a seu pai, mas o filho insensato é a tristeza de sua mãe.",
+                reference: "Provérbios 10:1"
+            },
+            {
+                text: "A memória do justo é abençoada, mas o nome dos ímpios apodrecerá.",
+                reference: "Provérbios 10:7"
+            },
+            {
+                text: "O que anda em integridade anda seguro, mas o que perverte os seus caminhos será conhecido.",
+                reference: "Provérbios 10:9"
+            },
+            {
+                text: "O ódio excita contendas, mas o amor cobre todas as transgressões.",
+                reference: "Provérbios 10:12"
+            },
+            {
+                text: "A bênção do Senhor é que enriquece; e não traz consigo dores.",
+                reference: "Provérbios 10:22"
+            }
+        ];
+        
+        // Elementos do DOM
+        const verseTextElement = document.getElementById('verse-text');
+        const verseReferenceElement = document.getElementById('verse-reference');
+        const candleButton = document.getElementById('candle-btn');
+        const flameElement = document.getElementById('flame');
+        
+        // Função para obter um versículo aleatório
+        function getRandomVerse() {
+            const randomIndex = Math.floor(Math.random() * verses.length);
+            return verses[randomIndex];
+        }
+        
+        // Função para exibir um novo versículo
+        function displayNewVerse() {
+            const verse = getRandomVerse();
+            verseTextElement.textContent = verse.text;
+            verseReferenceElement.textContent = verse.reference;
+            
+            // Acender a chama
+            flameElement.classList.add('active');
+            
+            // Apagar a chama após alguns segundos
+            setTimeout(() => {
+                flameElement.classList.remove('active');
+            }, 3000);
+        }
+        
+        // Adicionar evento de clique ao botão da vela
+        candleButton.addEventListener('click', displayNewVerse);
+        
+        // Exibir um versículo aleatório ao carregar a página
+        window.addEventListener('load', () => {
+            // Acender a vela brevemente ao carregar a página
+            flameElement.classList.add('active');
+            setTimeout(() => {
+                flameElement.classList.remove('active');
+            }, 2000);
+        });
+    </script>
+
+<div style="color: red">Word to HTML trial - please <a href="https://wordtohtml.net/site/payment">Go PRO</a> to get whole HTML.</div>
+</body>
+
+</html>
